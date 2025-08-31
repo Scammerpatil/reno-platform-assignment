@@ -102,7 +102,7 @@ export default function AddSchool() {
         success: (data: AxiosResponse) => {
           setSchool({
             ...school,
-            [path]: data.data.path,
+            [path]: data.data.fileUrl,
           });
           return "Image Uploaded Successfully";
         },
@@ -277,6 +277,7 @@ export default function AddSchool() {
                 onClick={() =>
                   handleImageUpload("schoolImages", school.name, "image")
                 }
+                type="button"
                 disabled={!schoolImage}
               >
                 Upload Image

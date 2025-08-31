@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import { v2 as cloudinary } from "cloudinary";
+
+// Cloudinary configuration
+cloudinary.config({
+  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true,
+});
 
 export async function POST(req: NextRequest) {
   try {
@@ -9,22 +16,21 @@ export async function POST(req: NextRequest) {
     let name = request.get("name") as string;
     name = name.split(" ").join("_");
     const folderName = request.get("folderName");
-    if (!fs.existsSync(`public/${folderName}`)) {
-      fs.mkdirSync(`public/${folderName}`);
-    }
-    if (file instanceof Blob && typeof name === "string") {
-      const fileBuffer = Buffer.from(await file.arrayBuffer());
-      const filePath = path.join(`public/${folderName}`, name + `.jpg`);
-      fs.writeFileSync(filePath, fileBuffer);
-      const imagePath = `/${folderName}/${name}.jpg`;
 
-      return NextResponse.json({ success: true, path: imagePath });
-    } else {
-      return NextResponse.json(
-        { success: false, error: "Invalid file or filename" },
-        { status: 400 }
-      );
-    }
+    const blob = file as Blob;
+    const arrayBuffer = await blob.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+    const mimeType = blob.type || "application/octet-stream";
+    const base64 = buffer.toString("base64");
+    const dataUri = `data:${mimeType};base64,${base64}`;
+
+    const result = await cloudinary.uploader.upload(dataUri, {
+      public_id: name,
+    });
+
+    const fileUrl = result.secure_url;
+    console.log(fileUrl);
+    return NextResponse.json({ fileUrl: fileUrl }, { status: 200 });
   } catch (error: unknown) {
     console.error(error);
     return NextResponse.json(
