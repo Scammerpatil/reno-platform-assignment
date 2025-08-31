@@ -1,7 +1,7 @@
 import { IconChevronDown, IconSun } from "@tabler/icons-react";
 import { useEffect } from "react";
 
-const ThemeToggler = ({ size }: { size: string }) => {
+const ThemeToggler = ({ className }: { className: string }) => {
   const themes = [
     "light",
     "dark",
@@ -52,11 +52,11 @@ const ThemeToggler = ({ size }: { size: string }) => {
   };
 
   return (
-    <div className="dropdown dropdown-end">
+    <div className={`dropdown dropdown-end ${className}`}>
       <div
         tabIndex={0}
         role="button"
-        className={`btn btn-primary ${size} text-primary-content flex items-center gap-2`}
+        className={`btn btn-primary text-primary-content flex items-center gap-2`}
       >
         <IconSun />
         <IconChevronDown />

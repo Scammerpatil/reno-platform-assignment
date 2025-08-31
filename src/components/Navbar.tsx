@@ -23,6 +23,7 @@ export default function Navbar() {
                 </Link>
               </li>
             ))}
+            <ThemeToggler className="" />
           </ul>
         </div>
       </div>
@@ -50,7 +51,7 @@ export default function Navbar() {
         <Link href="/view-schools" className="btn btn-secondary hidden lg:flex">
           View Schools <IconBuildingSkyscraper size={24} />
         </Link>
-        <ThemeToggler size="" />
+        <ThemeToggler className="hidden lg:flex" />
       </div>
     </div>
   );

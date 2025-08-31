@@ -26,13 +26,13 @@ export default function Home() {
             </a>
             <a
               href="/view-schools"
-              className="btn btn-outline text-base font-medium text-center rounded-lg mr-4 mt-2 lg:mt-0"
+              className="btn btn-outline text-base font-medium text-center rounded-lg mr-4 lg:mt-0"
             >
               View Schools
               <IconCircleChevronRight />
             </a>
           </div>
-          <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
+          <div className="lg:mt-0 lg:col-span-5">
             <img src="/school.png" alt="School image from storyset" />
           </div>
         </div>

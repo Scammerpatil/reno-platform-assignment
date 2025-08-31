@@ -76,7 +76,7 @@ export default function ViewSchools() {
         ⭐ View Schools ⭐
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 max-w-7xl mx-auto mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 max-w-7xl mx-4 lg:mx-auto mt-6">
         <fieldset className="fieldset">
           <legend className="fieldset-legend">Search Schools</legend>
           <label className="input input-primary w-full">
@@ -156,9 +156,9 @@ export default function ViewSchools() {
             ))}
           </select>
         </fieldset>
-        <div className="space-x-2 flex">
+        <div className="space-x-2 flex mx-auto">
           <button
-            className="btn btn-primary mt-8.5"
+            className="btn btn-primary lg:mt-8.5"
             onClick={() => {
               setSearchTerm({ name: "", city: "", state: "" });
               fetchSchools();
@@ -168,7 +168,7 @@ export default function ViewSchools() {
             Clear Filters & Refresh
           </button>
           <button
-            className="btn btn-accent mt-8.5"
+            className="btn btn-accent lg:mt-8.5"
             onClick={() => setTab(tab === "card" ? "list" : "card")}
           >
             {tab === "card" ? <IconTable size={20} /> : <IconCards size={20} />}
@@ -177,7 +177,7 @@ export default function ViewSchools() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-4 lg:mx-auto">
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
             {Array.from({ length: 6 }).map((_, index) => (
@@ -201,7 +201,10 @@ export default function ViewSchools() {
         ) : tab === "card" ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
             {filteredSchools.map((school: School) => (
-              <div className="card bg-base-300 w-96 shadow-sm" key={school.id}>
+              <div
+                className="card bg-base-300 w-full shadow-sm"
+                key={school.id}
+              >
                 <figure>
                   <img
                     src={school.image}

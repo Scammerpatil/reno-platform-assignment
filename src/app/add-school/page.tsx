@@ -119,13 +119,13 @@ export default function AddSchool() {
       <h1 className="font-bold text-3xl text-center uppercase w-full bg-base-200/60 py-6">
         ⭐ Add School ⭐
       </h1>
-      <section className="max-w-7xl mx-auto mt-2">
+      <section className="max-w-7xl mx-4 lg:mx-auto mt-2">
         <form
           action="post"
-          className="p-10 border border-base-content rounded-2xl shadow-2xl bg-base-300 space-y-4"
+          className="p-4 lg:p-10 border border-base-content rounded-2xl shadow-2xl bg-base-300 lg:space-y-4"
           onSubmit={(e) => handleSubmit(e)}
         >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 lg:gap-6">
             {/* Name */}
             <fieldset className="fieldset">
               <legend className="fieldset-legend text-base capitalize">
